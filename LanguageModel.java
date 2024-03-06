@@ -45,7 +45,7 @@ public class LanguageModel {
         while (!in.isEmpty()) {
         // Gets the next character
         c = in.readChar();
-        }
+
         // Checks if the window is already in the map
         List probs = CharDataMap.get(window);
 
@@ -61,15 +61,15 @@ public class LanguageModel {
 
         // Advances the window: adds c to the window’s end, and deletes the
         // window's first character.
-        window = (window + c).substring(1);
+        window+=c;
+        window = window.substring(1);
+    }
         // The entire file has been processed, and all the characters have been counted.
         // Proceeds to compute and set the p and cp fields of all the CharData objects
         // in each linked list in the map.
-        for (List probs : probabilities.values()){
+        for (List probs : CharDataMap.values())
         calculateProbabilities(probs);
-           }
-        }
-         
+    }
 
 
     // Computes and sets the probabilities (p and cp fields) of all the
