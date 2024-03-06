@@ -155,14 +155,14 @@ public class LanguageModel {
         int generatedTextLength = Integer.parseInt(args[2]);
         Boolean randomGeneration = args[3].equals("random");
         String fileName = args[4]    
-        LanguageModel lm;
+        LanguageModel lngMd;
         if (randomGeneration) {
-            lm = new LanguageModel(windowLength);
+            lngMd = new LanguageModel(windowLength);
         else
-            lm = new LanguageModel(windowLength, 20);
+        lngMd = new LanguageModel(windowLength, 20);
         // Trains the model, creating the map.
-        lm.train(fileName);
+        lngMd.train(fileName);
         // Generates text, and prints it.
-        System.out.println(lm.generate(initialText, generatedTextLength));  
+        System.out.println(lngMd.generate(initialText, generatedTextLength));  
     }
 }

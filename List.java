@@ -41,7 +41,7 @@ public class List {
         if (size == 0){
             return "()";
         }
-        String str = " ";
+        String str = "(";
         Node current = first;
         while (current != null){
             str += current.cp.toString() + " ";
@@ -92,14 +92,24 @@ public class List {
      *  in this list, removes this CharData object from the list and returns
      *  true. Otherwise, returns false. */
     public boolean remove(char chr) {
-        Node prev = first;
+        Node prev = null;
         Node current = first.next;
+        int nCount = 1;
         while (current != null) {
             if (current.cp.equals(chr)) {
-                prev.next = current.next;
-                this.size--;
+                if (nCount == 1)
+                {
+                first = first.next;
                 return true; 
             }
+            else {
+                    prev.next = current.next;
+                    return true;
+                }                    
+            }
+            prev = current;
+            current = current.next;
+            nCount++;
         }
         return false;
   }
@@ -111,19 +121,14 @@ public class List {
         if (index < 0 || index > this.size){
             throw new  IndexOutOfBoundsException(index + " is out of bounds");
         }
-    
-        int idx = 0;
-        Node current = first;
-        while (current != null) {    
-            if (idx == index) {
-                return current.cp;
+            else{
+             Node current = first;
+             for (int i = 0; i < index; i++) {
+                 current = current.next;
+             }
+                    return current.cp;
+                }
             }
-                current = current.next;
-                idx ++;
-        }     
-        return null; 
-    } 
-
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */
     public CharData[] toArray() {
