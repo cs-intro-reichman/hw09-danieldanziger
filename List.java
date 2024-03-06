@@ -77,7 +77,6 @@ public class List {
 
             if (current.cp.chr == chr) {
                 current.cp.count++;
-                current.next=null;
             }
             current = current.next;
            }
