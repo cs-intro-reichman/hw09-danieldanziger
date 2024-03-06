@@ -30,7 +30,8 @@ public class List {
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
         CharData newChar = new CharData(chr);
-        Node newNode = (newChar , first);
+        Node newNode = new Node(newChar);
+        newNode.next = first;
         first = newNode;
         this.size ++;
     }
@@ -83,7 +84,7 @@ public class List {
        }
            else 
            {
-            addFirst(chr)
+            addFirst(chr);
        }
     }
 
@@ -110,6 +111,7 @@ public class List {
         if (index < 0 || index > this.size){
             throw new  IndexOutOfBoundsException(index + " is out of bounds");
         }
+    
         int idx = 0;
         Node current = first;
         while (current != null) {    
@@ -118,9 +120,10 @@ public class List {
             }
                 current = current.next;
                 idx ++;
-        }
-            
+        }     
+        return null; 
     } 
+
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */
     public CharData[] toArray() {
@@ -147,6 +150,5 @@ public class List {
         }
         // Returns an iterator that starts in that element
 	    return new ListIterator(current);
-
     }
-}
+  }
